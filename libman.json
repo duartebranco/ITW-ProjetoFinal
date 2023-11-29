@@ -1,0 +1,22 @@
+{
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "destination": "wwwroot/lib/bootstrap/dist/",
+      "library": "bootstrap@5.2.2"
+    },
+    {
+      "destination": "wwwroot/lib/font-awesome/dist/",
+      "library": "font-awesome@4.7.0"
+    },
+    {
+      "destination": "wwwroot/lib/jquery/dist/",
+      "library": "jquery@3.7.1"
+    },
+    {
+      "destination": "wwwroot/lib/knockout/dist",
+      "library": "knockout@3.5.1"
+    }
+  ],
+  "version": "1.0"
+}
