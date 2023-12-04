@@ -70,24 +70,28 @@
                 <table class="table table-striped table-hover table-sm">
                     <thead class="thead-dark">
                         <tr>
+                            <th scope="col">Acronym</th>
                             <th scope="col">Team</th>
                             <th scope="col">City</th>
                             <th scope="col">State</th>
-                            <th scope="col">Arena</th>
-                            <th scope="col">Capacity</th>
                             <th scope="col">Conference</th>
                             <th scope="col">Division</th>
+                            <th scope="col">Logo</th>
+                            <th scope="col">History</th>
                         </tr>
                     </thead>
-                    <tbody data-bind="foreach: teams">
+                    <tbody data-bind="foreach: records">
                         <tr>
-                            <td data-bind="text: name"></td>
-                            <td data-bind="text: city"></td>
-                            <td data-bind="text: state"></td>
-                            <td data-bind="text: arenaName"></td>
-                            <td data-bind="text: capacity"></td>
-                            <td data-bind="text: conference"></td>
-                            <td data-bind="text: division"></td>
+                            <td data-bind="text:Acronym"></td>
+                            <td data-bind="text:Name"></td>
+                            <td data-bind="text:City"></td>
+                            <td data-bind="text:StateName"></td>
+                            <td data-bind="text:ConferenceName"></td>
+                            <td data-bind="text:DivisionName"></td>
+                            <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
+                            <td>
+                                <button data-bind="click: function() { alert(History); }, text: 'View History'" class="botao-historia"></button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
