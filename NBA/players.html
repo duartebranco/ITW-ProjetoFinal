@@ -25,8 +25,8 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
             </div>
@@ -81,11 +81,11 @@
                 <tr>
                     <td class="align-middle" data-bind="text:Id"></td>
                     <td class="align-middle" data-bind="text:Name"></td>
-                    <td class="align-middle" data-bind="text:Birthdate"></td>
+                    <td class="align-middle" data-bind="dateOnly:Birthdate"></td>
                     <td class="align-middle"><a class="nav-link" data-bind="text:CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }" title="Show Country Details"></a></td>
                     <td class="align-middle"><a class="nav-link" data-bind="text:PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a></td>
                     <td class="text-end">
-                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./arenaDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                        <a class="btn btn-default btn-light btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
                         <button class="btn btn-default btn-xs"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i></button>
                     </td>
                 </tr>
