@@ -65,9 +65,8 @@
             </div>
         </div>
         <!-- /ko -->
-
-        <table class="table table-striped table-sm small">
-            <thead class="table-secondary">
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Birthdate</th>
@@ -86,8 +85,8 @@
                     <td class="align-middle" data-bind="text:Name"></td>
                     <td class="align-middle" data-bind="dateOnly:Birthdate"></td>
                     <td class="align-middle"><a class="nav-link" data-bind="text:CountryName, attr: { href:'./countryDetails.html?id=' + CountryId }" title="Show Country Details"></a></td>
-                    <td class="align-middle"><a class="nav-link" data-bind="text:PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a></td>
                     <td class="align-middle" data-bind="text:DraftYear"></td>
+                    <td class="align-middle"><a class="nav-link" data-bind="text:PositionName, attr: { href:'./positionDetails.html?id=' + PositionId }" title="Show Position Details"></a></td>
                     <td class="align-middle" data-bind="text:Height"></td>
                     <td class="align-middle" data-bind="text:Weight"></td>
                     <td class="align-middle" data-bind="text:School"></td>
