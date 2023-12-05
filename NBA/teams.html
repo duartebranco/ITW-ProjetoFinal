@@ -22,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
             </div>
@@ -45,20 +45,20 @@
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
-                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
-                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './teams.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './teams.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
                     <!-- /ko -->
                     <!-- ko foreach: pageArray()-->
                     <!-- ko if:$data == $parent.currentPage() -->
                     <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
                     <!-- /ko -->
                     <!-- ko if:$data != $parent.currentPage() -->
-                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './teams.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
                     <!-- /ko -->
                     <!-- /ko -->
                     <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
-                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './players.html?page=' + nextPage(), rel:'next' }">→</a></li>
-                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './players.html?page=' + totalPages() }">⇥</a></li>
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './teams.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './teams.html?page=' + totalPages() }">⇥</a></li>
                     <!-- /ko -->
                 </ul>
             </div>
@@ -90,7 +90,7 @@
                             <td data-bind="text:DivisionName"></td>
                             <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
                             <td>
-                                <button data-bind="click: function() { alert(History); }, text: 'View History'" class="botao-historia"></button>
+                                <button data-bind="click: function() { alert(History); }, text: 'View History'" class="btn btn-primary"></button>
                             </td>
                         </tr>
                     </tbody>
