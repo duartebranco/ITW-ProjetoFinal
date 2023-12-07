@@ -169,3 +169,21 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+var num = 0;
+
+function toggleFavoritePlayers(button) {
+    var heartIcon = button.querySelector('i');
+    if (heartIcon.classList.toggle('fa-heart')) {
+        num++;
+    }
+    if (heartIcon.classList.toggle('fa-heart-o')) {
+        num--;
+    }
+    if(num > 3){
+        heartIcon.classList.toggle('fa-heart');
+        heartIcon.classList.toggle('fa-heart-o');
+        num--;
+    }
+    heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
+}

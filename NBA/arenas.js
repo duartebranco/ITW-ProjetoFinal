@@ -154,7 +154,7 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-function toggleFavorite(button) {
+function toggleFavoriteArena(button) {
     var heartIcon = button.querySelector('i');
     heartIcon.classList.toggle('fa-heart');
     heartIcon.classList.toggle('fa-heart-o');

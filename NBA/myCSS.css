@@ -37,3 +37,13 @@ li.page-item a {
     font-size: 0.85rem;
 }
 
+#podium {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player-spot {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+}
