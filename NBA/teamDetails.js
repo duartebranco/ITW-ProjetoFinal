@@ -36,17 +36,10 @@ var vm = function () {
     //--- Data Record
     self.Id = ko.observable('');
     self.Acronym = ko.observable('');
-    self.Name = ko.observable('');
-    self.ConferenceId = ko.observable('');
-    self.ConferenceName = ko.observable('');
-    self.DivisionId = ko.observable('');
-    self.DivisionName = ko.observable('');
-    self.StateId = ko.observable('');
-    self.StateName = ko.observable('');
-    self.City = ko.observable('');
     self.Logo = ko.observable('');
     self.History = ko.observable('');
-
+    
+    
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getTeam...');
@@ -56,14 +49,6 @@ var vm = function () {
             hideLoading();
             self.Id(data.Id);
             self.Acronym(data.Acronym);
-            self.Name(data.Name);
-            self.ConferenceId(data.ConferenceId);
-            self.ConferenceName(data.ConferenceName);
-            self.DivisionId(data.DivisionId);
-            self.DivisionName(data.DivisionName);
-            self.StateId(data.StateId);
-            self.StateName(data.StateName);
-            self.City(data.City);
             self.Logo(data.Logo);
             self.History(data.History);
         });

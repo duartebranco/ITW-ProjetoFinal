@@ -38,17 +38,22 @@
     <!-- Work Area-->
     <div class="container">
         <div class="py-2 border-bottom mb-3">
-            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+            <h2 data-bind="text:Acronym() +' [' + Id() + ']'"></h2>
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row border-bottom g-2">
-            <div class="col-2">Acronym</div><div class="col-10" data-bind="text: Acronym"></div>
+            <div class="col-2">Game Id</div><div class="col-10" data-bind="text: Id"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Team</div><div class="col-10" data-bind="text: Name"></div>
+            <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">City</div><div class="col-10" data-bind="text: City"></div>
+            <div class="col-2">Team</div>
+        <!-- /ko -->
+        <div>
+            <h2 data-bind="text:Acronym"></h2>
+            <img data-bind="attr: { src: Logo }" alt="Team Logo">
+            <p data-bind="text:History"></p>
         </div>
         <!-- /ko -->
         <a href="./teams.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
@@ -82,6 +87,6 @@
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="arenaDetails.js"></script>
+    <script src="teamDetails.js"></script>
 </body>
 </html>
