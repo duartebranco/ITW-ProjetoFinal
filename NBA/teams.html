@@ -91,7 +91,7 @@
                             <td class="align-middle" data-bind="text:DivisionName"></td>
                             <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
                             <td>
-                                <button data-bind="click: function() { alert(History); }, text: 'View History'" class="btn btn-primary"></button>
+                                <a data-bind="attr: { href:'./teamDetails.html?id=' + Id }" class="btn btn-primary" title="Show details">Show details</a>
                             </td>
                         </tr>
                     </tbody>
