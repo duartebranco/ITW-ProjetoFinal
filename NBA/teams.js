@@ -1,7 +1,33 @@
+console.log(localStorage.getItem('theme'));
+
+// Add event listener
+$('.switch').click(function() {
+    if ($('html').attr('data-bs-theme') == 'dark') {
+        $('html').removeAttr('data-bs-theme');
+        localStorage.removeItem('theme');
+        console.log(localStorage.getItem('theme'));
+        return;
+    } else {
+        $('html').attr('data-bs-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        console.log(localStorage.getItem('theme'));
+        return;
+    }
+});
+
+// On page load, check local storage for theme preference
+$(window).on('load', function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        $('html').attr('data-bs-theme', 'dark');
+    } 
+});
+
+
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
-    //---Variáveis locais
+    //---Variï¿½veis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Teams')
     self.displayName = 'NBA Teams List';
