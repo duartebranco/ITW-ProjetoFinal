@@ -24,6 +24,20 @@ $(window).on('load', function() {
 });
 
 
+// Custom Knockout.js binding
+ko.bindingHandlers.dateOnly = {
+    update: function(element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+        if (value === null) {
+            $(element).text("");
+            return;
+        }
+        var splitValue = value.split("T")[0];
+        $(element).text(splitValue);
+    }
+};
+
+
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
@@ -45,11 +59,11 @@ var vm = function () {
     self.Height = ko.observable('');
     self.Weight = ko.observable('');
     self.School = ko.observable('');
-    self.Biography = ko.observable('');
+    self.Photo = ko.observable('');
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getArena...');
+        console.log('CALL: getPlayers...');
         var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
@@ -65,7 +79,7 @@ var vm = function () {
             self.Height(data.Height);
             self.Weight(data.Weight);
             self.School(data.School);
-            self.Biography(data.Biography);
+            self.Photo(data.Photo);
         });
     };
 

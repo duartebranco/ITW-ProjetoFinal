@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
                 <ul class="navbar-nav justify-content-end" id="bd-theme">
-                    <li class="nav-item ml-md-auto"><a class="btn btn-primary switch">Switch Light/Dark</a></li>
+                    <li class="nav-item ml-md-auto"><a class="btn btn-outline-primary switch"><i class="fa fa-toggle-on" aria-hidden="true"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -42,20 +42,31 @@
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row border-bottom g-2">
-            <div class="col-2">Id</div><div class="col-10" data-bind="text: Id"></div>
+            <div class="col-2">Id</div><div class="col-10" data-bind="text:Id"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
+            <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Birthdate</div><div class="col-10" data-bind="text: Birthdate"></div>
+            <div class="col-2">Birthdate</div><div class="col-10" data-bind="dateOnly:Birthdate"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Capacity</div><div class="col-10" data-bind="text: Capacity"></div>
+            <div class="col-2">CountryName</div><div class="col-10" data-bind="text:CountryName"></div>
         </div>
-        <!-- ko if:Opened().length > 0 -->
         <div class="row border-bottom g-2">
-            <div class="col-2">Opened</div><div class="col-10" data-bind="text: Opened"></div>
+            <div class="col-2">Draft Year</div><div class="col-10" data-bind="text:DraftYear"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">Position</div><div class="col-10" data-bind="text:PositionName"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">Height</div><div class="col-10" data-bind="text:Height"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">Weight</div><div class="col-10" data-bind="text:Weight"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">School</div><div class="col-10" data-bind="text:School"></div>
         </div>
         <!-- /ko -->
         <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
@@ -65,7 +76,7 @@
             </div>
         </div>
         <!-- /ko -->
-        <a href="./players.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+        <a href="./players.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a> 
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
