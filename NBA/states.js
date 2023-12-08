@@ -35,10 +35,10 @@ $(window).on('load', function() {
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
-    //---Vari�veis locais
+    //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Teams')
-    self.displayName = 'NBA Teams List';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/States');
+    self.displayName = 'NBA States List';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     self.records = ko.observableArray([]);
@@ -78,7 +78,7 @@ var vm = function () {
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getTeams...');
+        console.log('CALL: getStates...');
         var composedUri = self.baseUri() + "?page=" + id + "&pageSize=" + self.pagesize();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
@@ -163,3 +163,9 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+function toggleFavoriteArena(button) {
+    var heartIcon = button.querySelector('i');
+    heartIcon.classList.toggle('fa-heart');
+    heartIcon.classList.toggle('fa-heart-o');
+    heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
+}

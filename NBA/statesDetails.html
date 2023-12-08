@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Arena Details</title>
+    <title>ITW 2023/24 - NBA States Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -22,9 +22,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="top.html"><i class="fa fa-trophy"></i> Top 3</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
@@ -47,38 +47,17 @@
         <div class="row border-bottom g-2">
             <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
         </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Birthdate</div><div class="col-10" data-bind="dateOnly:Birthdate"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">CountryName</div><div class="col-10" data-bind="text:CountryName"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Draft Year</div><div class="col-10" data-bind="text:DraftYear"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Position</div><div class="col-10" data-bind="text:PositionName"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Height</div><div class="col-10" data-bind="text:Height"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Weight</div><div class="col-10" data-bind="text:Weight"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">School</div><div class="col-10" data-bind="text:School"></div>
-        </div>
         <!-- /ko -->
-        <div class="row border-bottom g-2" data-bind="visible: Photo() != '' && Photo() != null">
-            <div class="col-2">Photo</div><div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Photo}"><br />
-                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Photo }, text: Photo" target="_blank"></a>]
+        <div class="row border-bottom g-2" data-bind="visible: Flag() != '' && Flag() != null">
+            <div class="col-2">Flag</div><div class="small col-10">
+                <img class="img-thumbnail" data-bind="attr:{src: Flag}"><br />
+                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Flag }, text: Flag" target="_blank"></a>]
             </div>
         </div>
         <br />
         <!-- ko if:Teams().length > 0 -->
         <div class="py-2 border-bottom mb-3">
-            <h4>Lista de Equipas por Jogador<span data-bind="text: ' [' + Seasons().length +']'"></span></h4>
+            <h4>Lista de Equipas neste Estado<span data-bind="text: ' [' + Teams().length +']'"></span></h4>
         </div>
         <table class="table table-striped table-hover table-sm">
             <thead class="thead-dark">
@@ -109,7 +88,40 @@
             </tbody>
         </table>
         <!-- /ko -->
-        <a href="./players.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a> 
+        <!-- ko if:Arenas().length > 0 -->
+        <div class="py-2 border-bottom mb-3">
+            <h4>Lista de Arenas neste Estado<span data-bind="text: ' [' + Arenas().length +']'"></span></h4>
+        </div>
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Capacity</th>
+                    <th scope="col">Opening year</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: Arenas()">
+                <tr>
+                    <td class="align-middle" data-bind="text:Id"></td>
+                    <td class="align-middle" data-bind="text:Name"></td>
+                    <td class="align-middle"><a class="nav-link" data-bind="text:StateName, attr: { href:'./stateDetails.html?id=' + StateId }" title="Show State Details"></a></td>
+                    <td class="align-middle"><a class="nav-link" data-bind="text:TeamName, attr: { href:'./teamDetails.html?id=' + TeamId }" title="Show Team Details"></a></td>
+                    <td class="align-middle" data-bind="text:Location"></td>
+                    <td class="align-middle" data-bind="text:Capacity"></td>
+                    <td class="align-middle" data-bind="text:Opened"></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./arenaDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /ko -->
+        <a href="./states.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -139,6 +151,6 @@
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="playersDetails.js"></script>
+    <script src="statesDetails.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
                 <ul class="navbar-nav justify-content-end" id="bd-theme">
-                    <li class="nav-item ml-md-auto"><a class="btn btn-primary switch">Switch Light/Dark</a></li>
+                    <li class="nav-item ml-md-auto"><i class="fa fa-moon-o" aria-hidden="true"></i><a class="btn switch"><i class="fa fa-toggle-on" aria-hidden="true"></i></a><i class="fa fa-sun-o" aria-hidden="true"></i></li>
                 </ul>
             </div>
         </div>
@@ -42,17 +42,17 @@
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row border-bottom g-2">
-            <div class="col-2">Game Id</div><div class="col-10" data-bind="text: Id"></div>
+            <div class="col-2">Id</div><div class="col-10" data-bind="text: Id"></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">State</div><div class="col-10"><a class="nav-link" data-bind="text:StateName, attr: { href:'./stateDetails.html?id=' + StateId }" title="Show State Details"></a></div>
+            <div class="col-2">State</div><div class="col-10"><a class="nav-link" data-bind="text:StateName, attr: { href:'./statesDetails.html?id=' + StateId() }" title="Show State Details"></a></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Team</div>
-            <div class="col-10"><a class="nav-link" data-bind="text:'[' + TeamAcronym() + '] ' + TeamName(), attr: { href:'./teamDetails.html?id=' + TeamId }" title="Show Team Details"></a></div>
+            <div class="col-10"><a class="nav-link" data-bind="text:'[' + TeamAcronym() + '] ' + TeamName(), attr: { href:'./teamDetails.html?id=' + TeamId() }" title="Show Team Details"></a></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Location</div><div class="col-10" data-bind="text: Location"></div>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <!-- /ko -->
-        <a href="./arenas.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
+        <a href="./arenas.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
