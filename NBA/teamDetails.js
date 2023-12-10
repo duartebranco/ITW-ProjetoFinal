@@ -58,7 +58,7 @@ var vm = function () {
     //--- Page Events
     self.activate = function () {
         console.log('CALL: getTeams...');
-        var composedUri = self.baseUri() + this.Id() ;
+        var composedUri = self.baseUri() + pg + '?acronym=' + pg2;
         console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
             ///console.log(data);
@@ -128,9 +128,9 @@ var vm = function () {
     console.log(pg);
     console.log(pg2);
     if (pg == undefined)
-        self.activate(1);
+        self.activate(1, 'ATL');
     else {
-        self.activate(pg);
+        self.activate(pg, pg2);
     }
     console.log("VM initialized!");
 };

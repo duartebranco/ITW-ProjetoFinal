@@ -53,7 +53,7 @@
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Team</div>
-            <div class="col-10"><a class="nav-link" data-bind="text:'[' + TeamAcronym() + '] ' + TeamName(), attr: { href:'./teamDetails.html?id=' + TeamId() }" title="Show Team Details"></a></div>
+            <div class="col-10"><a class="nav-link" data-bind="text:'[' + TeamAcronym() + '] ' + TeamName(), attr: { href:'./teamDetails.html?id=' + TeamId() + '&acronym=' + TeamAcronym() }" title="Show Team Details"></a></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Location</div><div class="col-10" data-bind="text: Location"></div>

@@ -51,20 +51,22 @@
             <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Conference</div><div class="col-10" data-bind="text:Conference"></div>
+            <div class="col-2">Conference</div><div class="col-10" data-bind="text:ConferenceName"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Division</div><div class="col-10" data-bind="text:Division"></div>
+            <div class="col-2">Division</div><div class="col-10" data-bind="text:DivisionName"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">State</div><div class="col-10" data-bind="text:State"></div>
+            <div class="col-2">State</div><div class="col-10" data-bind="text:StateName"></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">City</div><div class="col-10" data-bind="text:City"></div>
         </div>
+        <!-- ko if:History() != null -->
         <div class="row border-bottom g-2">
             <div class="col-2">History</div><div class="col-10" data-bind="text:History"></div>
         </div>
+        <!-- /ko -->
         <!-- /ko -->
         <div class="row border-bottom g-2" data-bind="visible: Logo() != '' && Logo() != null">
             <div class="col-2">Team Logo</div><div class="small col-10">
@@ -72,6 +74,25 @@
                 <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]
             </div>
         </div>
+
+        <!-- ko if:Seasons().length > 0 -->
+        <div class="py-2 border-bottom mb-3">
+            <h4>Lista de Seasons<span data-bind="text: ' [' + Seasons().length +']'"></span></h4>
+        </div>
+        <div class="d-flex flex-wrap" data-bind="foreach: Seasons()">
+            <a class="btn border rounded-md m-1" data-bind=" attr:{href: 'seasonsDetails.html?id=' + Id}"><i class="fa fa-bookmark-o text-info"></i> <span data-bind="text:Season"></span></a>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko if: Players().length > 0 -->
+        <div class="py-2 border-bottom mb-3">
+            <h4>Lista de Players<span data-bind="text: ' [' + Players().length +']'"></span></h4>
+        </div>
+        <div class="d-flex flex-wrap" data-bind="foreach: Players()">
+            <a class="btn border rounded-md m-1" data-bind=" attr:{href:'./playersDetails.html?id=' + Id}"><i class="fa fa-user"></i> <span data-bind="text:Name"></span></a>
+        </div>
+        <!-- /ko -->
+        <br />
         <a href="./teams.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a>
     </div>
     <!-- Modal -->

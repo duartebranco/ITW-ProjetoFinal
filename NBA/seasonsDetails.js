@@ -58,6 +58,7 @@ var vm = function () {
     //--- Data Record
     self.Id = ko.observable('');
     self.Season = ko.observable('');
+    
     self.Teams = ko.observableArray([]);
     self.Players = ko.observableArray([]);
 
