@@ -1,18 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Arenas List</title>
+    <title>ITW 2023/24 - NBA Players</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../lib/leaflet/dist/leaflet.css" rel="stylesheet" />
-    <link href="../lib/leaflet-fullscreen/dist/Control.FullScreen.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="myCSS.css" />
 </head>
 <body>
@@ -24,13 +22,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe"></i> Conferences</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-soccer-ball-o "></i> Divisions</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="divisions.html"><i class="fa fa-soccer-ball-o "></i> Divisions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="top.html"><i class="fa fa-trophy"></i> Top 3</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
@@ -42,20 +40,67 @@
     </nav>
     <!-- Working Area -->
     <div class="container">
-        <div class="py-2 border-bottom mb-3">
-            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+        <div class="border-bottom py-2 mb-2">
+            <h2 data-bind="text:displayName"></h2>
         </div>
-        <div id="map" style="height:720px;width:100%"></div>
+        <!-- ko if:records().length > 0 -->
+        <div class="row small">
+            <p class=" col-4 mr-auto pt-2">
+                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+                <span data-bind="html: 'Entrances: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            </p>
+            <div class="col-8 my-0 pt-3">
+                <ul class="pagination float-end">
+                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './players.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './players.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: pageArray()-->
+                    <!-- ko if:$data == $parent.currentPage() -->
+                    <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if:$data != $parent.currentPage() -->
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './players.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './players.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './players.html?page=' + totalPages() }">⇥</a></li>
+                    <!-- /ko -->
+                </ul>
+            </div>
+        </div>
+        <!-- /ko -->
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: records">
+                <tr>
+                    <td class="align-middle" data-bind="text:Id"></td>
+                    <td class="align-middle" data-bind="text:Name"></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./divisionsDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoritePlayers(this)">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"ia-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <img src="NBA_logo.png" height="30" /> Loading data...
-                    </h5>
+                    </h5> ar
                 </div>
                 <div class="modal-body text-center">
                     <i class="fa fa-spin fa-3x fa-refresh"></i>
@@ -73,12 +118,9 @@
             </div>
         </div>
     </nav>
-
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../lib/leaflet/dist/leaflet.min.js"></script>
-    <script src="../lib/leaflet-fullscreen/dist/Control.FullScreen.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="arenasmaps.js"></script>
+    <script src="divisions.js"></script>
 </body>
 </html>

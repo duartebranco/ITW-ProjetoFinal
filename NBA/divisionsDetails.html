@@ -1,18 +1,15 @@
 <!doctype html>
-
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA Arenas List</title>
+    <title>ITW 2023/24 - NBA Divisions Details</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="../lib/leaflet/dist/leaflet.css" rel="stylesheet" />
-    <link href="../lib/leaflet-fullscreen/dist/Control.FullScreen.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="myCSS.css" />
 </head>
 <body>
@@ -24,13 +21,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe"></i> Conferences</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-soccer-ball-o "></i> Divisions</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="divisions.html"><i class="fa fa-soccer-ball-o "></i> Divisions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="top.html"><i class="fa fa-trophy"></i> Top 3</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
                 </ul>
@@ -40,14 +37,36 @@
             </div>
         </div>
     </nav>
-    <!-- Working Area -->
+    <!-- Work Area-->
     <div class="container">
         <div class="py-2 border-bottom mb-3">
             <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
         </div>
-        <div id="map" style="height:720px;width:100%"></div>
+        <!-- ko if:Name().length > 0 -->
+        <div class="row border-bottom g-2">
+            <div class="col-2">Id</div><div class="col-10" data-bind="text:Id"></div>
+        </div>
+        <div class="row border-bottom g-2">
+            <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
+        </div>
+        <!-- /ko -->
+        <div class="row border-bottom g-2" data-bind="visible: Logo() != '' && Logo() != null">
+            <div class="col-2">Logo</div><div class="small col-10">
+                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br />
+                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]
+            </div>
+        </div>
+        <!-- ko if:Teams().length > 0 -->
+        <div class="py-2 border-bottom mb-3">
+            <h4>Lista de Equipas<span data-bind="text: ' [' + Teams().length +']'"></span></h4>
+        </div>
+        <div class="d-flex flex-wrap" data-bind="foreach: Teams()">
+            <a class="btn border rounded-md m-1" data-bind=" attr:{href:'./teamDetails.html?id=' + Id + '&acronym=' + Acronym}"><i class="fa fa-futbol-o"></i> <span data-bind="text:Name"></span></a>
+        </div>
+        <!-- /ko -->
+        <br />
+        <a href="./divisions.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a> 
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -63,7 +82,7 @@
             </div>
         </div>
     </div>
-    <!-- End of Working Area -->
+    <!-- End of Work Area -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-bottom">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
@@ -73,12 +92,9 @@
             </div>
         </div>
     </nav>
-
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../lib/leaflet/dist/leaflet.min.js"></script>
-    <script src="../lib/leaflet-fullscreen/dist/Control.FullScreen.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="arenasmaps.js"></script>
+    <script src="divisionsDetails.js"></script>
 </body>
 </html>
