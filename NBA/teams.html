@@ -67,40 +67,38 @@
                 </ul>
             </div>
         </div>
-    <!-- /ko -->
-                <table class="table table-striped table-hover table-sm">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Acronym</th>
-                            <th scope="col">Team</th>
-                            <th scope="col">City</th>
-                            <th scope="col">State</th>
-                            <th scope="col">Conference</th>
-                            <th scope="col">Division</th>
-                            <th scope="col">Logo</th>
-                            <th scope="col">History</th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: records">
-                        <tr>
-                            <td class="align-middle" data-bind="text:Acronym"></td>
-                            <td class="align-middle" data-bind="text:Name"></td>
-                            <td class="align-middle" data-bind="text:City"></td>
-                            <td class="align-middle" data-bind="text:StateName"></td>
-                            <td class="align-middle" data-bind="text:ConferenceName"></td>
-                            <td class="align-middle" data-bind="text:DivisionName"></td>
-                            <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
-                            <td class="text-end">
-                                <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./teamDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
-                                <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
-                                    <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- /ko -->
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Acronym</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Conference</th>
+                    <th scope="col">Division</th>
+                    <th scope="col">Logo</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: records">
+                <tr>
+                    <td class="align-middle" data-bind="text:Acronym"></td>
+                    <td class="align-middle" data-bind="text:Name"></td>
+                    <td class="align-middle" data-bind="text:City"></td>
+                    <td class="align-middle" data-bind="text:StateName"></td>
+                    <td class="align-middle" data-bind="text:ConferenceName"></td>
+                    <td class="align-middle" data-bind="text:DivisionName"></td>
+                    <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./teamDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

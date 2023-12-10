@@ -3,14 +3,17 @@ console.log(localStorage.getItem('theme'));
 // Add event listener
 $('.switch').click(function() {
     if ($('html').attr('data-bs-theme') == 'dark') {
+
         $('html').removeAttr('data-bs-theme');
         localStorage.removeItem('theme');
         console.log(localStorage.getItem('theme'));
+        $(this).children('i').removeClass('fa-toggle-off').addClass('fa-toggle-on');
         return;
     } else {
         $('html').attr('data-bs-theme', 'dark');
         localStorage.setItem('theme', 'dark');
         console.log(localStorage.getItem('theme'));
+        $(this).children('i').removeClass('fa-toggle-on').addClass('fa-toggle-off');
         return;
     }
 });
@@ -20,7 +23,12 @@ $(window).on('load', function() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         $('html').attr('data-bs-theme', 'dark');
-    } 
+        // Change the icon to 'fa-toggle-off' when the theme is 'dark'
+        $('.switch').children('i').removeClass('fa-toggle-on').addClass('fa-toggle-off');
+    } else {
+        // Change the icon to 'fa-toggle-on' when the theme is not 'dark'
+        $('.switch').children('i').removeClass('fa-toggle-off').addClass('fa-toggle-on');
+    }
 });
 
 
@@ -36,21 +44,36 @@ var vm = function () {
     //--- Data Record
     self.Id = ko.observable('');
     self.Acronym = ko.observable('');
+    self.Name = ko.observable('');
+    self.ConferenceName = ko.observable('');
+    self.DivisionName = ko.observable('');
+    self.StateName = ko.observable('');
+    self.City = ko.observable('');
     self.Logo = ko.observable('');
     self.History = ko.observable('');
-    
+    self.Seasons = ko.observableArray([]);
+    self.Players = ko.observableArray([]);
+
     
     //--- Page Events
-    self.activate = function (id, acronym) {
+    self.activate = function () {
         console.log('CALL: getTeams...');
-        var composedUri = self.baseUri() + id + '?acronym=' + acronym;
+        var composedUri = self.baseUri() + this.Id() ;
+        console.log(composedUri);
         ajaxHelper(composedUri, 'GET').done(function (data) {
-            console.log(data);
+            ///console.log(data);
             hideLoading();
             self.Id(data.Id);
             self.Acronym(data.Acronym);
+            self.Name(data.Name);
+            self.ConferenceName(data.ConferenceName);
+            self.DivisionName(data.DivisionName);
+            self.StateName(data.StateName);
+            self.City(data.City);
             self.Logo(data.Logo);
             self.History(data.History);
+            self.Seasons(data.Seasons);
+            self.Players(data.Players);
         });
     };
 
@@ -101,7 +124,9 @@ var vm = function () {
     //--- start ....
     showLoading();
     var pg = getUrlParameter('id');
+    var pg2 = getUrlParameter('acronym');
     console.log(pg);
+    console.log(pg2);
     if (pg == undefined)
         self.activate(1);
     else {

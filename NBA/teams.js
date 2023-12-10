@@ -31,19 +31,6 @@ $(window).on('load', function() {
     }
 });
 
-// Custom Knockout.js binding
-ko.bindingHandlers.dateOnly = {
-    update: function(element, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor());
-        if (value === null) {
-            $(element).text("");
-            return;
-        }
-        var splitValue = value.split("T")[0];
-        $(element).text(splitValue);
-    }
-};
-
 
 // ViewModel KnockOut
 var vm = function () {
