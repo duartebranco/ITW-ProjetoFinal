@@ -188,10 +188,5 @@ function toggleFavoritePlayers(button) {
     if (heartIcon.classList.toggle('fa-heart-o')) {
         num--;
     }
-    if(num > 3){
-        heartIcon.classList.toggle('fa-heart');
-        heartIcon.classList.toggle('fa-heart-o');
-        num--;
-    }
     heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
 }

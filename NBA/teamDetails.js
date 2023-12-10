@@ -41,9 +41,9 @@ var vm = function () {
     
     
     //--- Page Events
-    self.activate = function (id) {
-        console.log('CALL: getTeam...');
-        var composedUri = self.baseUri() + id;
+    self.activate = function (id, acronym) {
+        console.log('CALL: getTeams...');
+        var composedUri = self.baseUri() + id + '?acronym=' + acronym;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();

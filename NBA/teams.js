@@ -31,6 +31,19 @@ $(window).on('load', function() {
     }
 });
 
+// Custom Knockout.js binding
+ko.bindingHandlers.dateOnly = {
+    update: function(element, valueAccessor) {
+        var value = ko.utils.unwrapObservable(valueAccessor());
+        if (value === null) {
+            $(element).text("");
+            return;
+        }
+        var splitValue = value.split("T")[0];
+        $(element).text(splitValue);
+    }
+};
+
 
 // ViewModel KnockOut
 var vm = function () {
@@ -163,3 +176,16 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
+
+var num = 0;
+
+function toggleFavoriteTeams(button) {
+    var heartIcon = button.querySelector('i');
+    if (heartIcon.classList.toggle('fa-heart')) {
+        num++;
+    }
+    if (heartIcon.classList.toggle('fa-heart-o')) {
+        num--;
+    }
+    heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
+}

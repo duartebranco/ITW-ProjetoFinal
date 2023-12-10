@@ -90,8 +90,11 @@
                             <td class="align-middle" data-bind="text:ConferenceName"></td>
                             <td class="align-middle" data-bind="text:DivisionName"></td>
                             <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
-                            <td>
-                                <a data-bind="attr: { href:'./teamDetails.html?id=' + Id }" class="btn btn-primary" title="Show details">Show details</a>
+                            <td class="text-end">
+                                <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./teamDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                                <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
+                                    <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

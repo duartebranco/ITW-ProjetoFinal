@@ -42,23 +42,23 @@
         </div>
         <!-- ko if:Name().length > 0 -->
         <div class="row border-bottom g-2">
-            <div class="col-2">Game Id</div><div class="col-10" data-bind="text: Id"></div>
+            <div class="col-2">Game Id</div><div class="col-10" data-bind="text:Id"></div>
         </div>
         <div class="row border-bottom g-2">
-            <div class="col-2">Name</div><div class="col-10" data-bind="text: Name"></div>
+            <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
         </div>
         <div class="row border-bottom g-2">
             <div class="col-2">Team</div>
         <!-- /ko -->
-        <div>
-            <h2 data-bind="text:Acronym"></h2>
-            <img data-bind="attr: { src: Logo }" alt="Team Logo">
-            <p data-bind="text:History"></p>
+        <div class="row border-bottom g-2" data-bind="visible: Logo() != '' && Logo() != null">
+            <div class="col-2">Team Logo</div><div class="small col-10">
+                <img class="img-thumbnail" data-bind="attr:{src: Logo}"><br />
+                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Logo }, text: Logo" target="_blank"></a>]
+            </div>
         </div>
         <!-- /ko -->
         <a href="./teams.html" class="btn btn-default btn-sm small"><i class="fa fa-list"></i> Back to List</a>
     </div>
-    
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
