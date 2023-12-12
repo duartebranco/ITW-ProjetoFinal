@@ -190,3 +190,4 @@ function toggleFavoritePlayers(button) {
     }
     heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
 }
+

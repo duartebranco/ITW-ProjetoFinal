@@ -52,17 +52,20 @@
         <div id="second" class="player-spot"></div>
         <div id="third" class="player-spot"></div>
     </div>
-    <input class="form-control form-control-sm" type="text" name="q" placeholder="Insira o nome ou acrónimo" />
-    <div class="input-group-append">
-        <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i class="fa fa-search small"></i></button>
-        <a href="/NBA/Players" class="btn btn-default btn-sm" title="Limpar o filtro"><i class="fa fa-times"></i></a>
-    </div>
-    <table data-bind="foreach: players">
-        <tr>
-            <td data-bind="text:Name"></td>
-            <td data-bind="text:Team"></td>
-            <!-- Add more columns as needed -->
-        </tr>
+    <div class="container">
+        <h1>Top 3 Players</h1>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control form-control-sm" placeholder="Search..." data-bind="value: filter" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-default btn-sm" title="Filtrar" data-bind="click: searchPlayers"><i class="fa fa-search small"></i></button>
+                <a href="/NBA/Players" class="btn btn-default btn-sm" title="Limpar o filtro"><i class="fa fa-times"></i></a>
+            </div>
+        </div>
+        <table data-bind="foreach: players">
+            <tr>
+                <td data-bind="text:Name"></td>
+            </tr>
+        </table>
     <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
