@@ -1,3 +1,4 @@
+
 const question = document.querySelector(".question");
 const answers = document.querySelector(".answers");
 const spnQtd = document.querySelector(".spnQtd");
@@ -36,7 +37,7 @@ function nextQuestion(e) {
 }
 
 function finish() {
-    textFinish.innerHTML = `Acertaste ${questionsCorrect} de ${questions.length}`;
+    textFinish.innerHTML = `You got ${questionsCorrect} from ${questions.length}`;
     content.style.display = "none";
     contentFinish.style.display = "flex";
 }
