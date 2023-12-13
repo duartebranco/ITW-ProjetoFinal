@@ -32,51 +32,32 @@ $(window).on('load', function() {
 });
 
 
-// Custom Knockout.js binding
-ko.bindingHandlers.dateOnly = {
-    update: function(element, valueAccessor) {
-        var value = ko.utils.unwrapObservable(valueAccessor());
-        if (value === null) {
-            $(element).text("");
-            return;
-        }
-        var splitValue = value.split("T")[0];
-        $(element).text(splitValue);
-    }
-};
-
-
-$('#search-form').on('submit', function(event) {
-    event.preventDefault();
-    var query = $('#query').val();
-    localStorage.setItem('userInput', query);
-    window.location.href = 'playersSearch.html';
-});
-
-
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Players/');
-    self.displayName = 'NBA Players Details';
+    self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Positions/');
+    self.displayName = 'NBA Positions Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
-    self.players = ko.observableArray([]);
-
+    self.Id = ko.observable('');
+    self.Name = ko.observable('');
+    self.Description = ko.observable('');
+    self.Players = ko.observableArray([]);
 
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getPlayers...');
-        var composedUri = self.baseUri() + "/Search?q=" + localStorage.getItem('userInput');
+        console.log('CALL: getPositions...');
+        var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             hideLoading();
-            data.forEach(function(player) {
-                self.players.push(player);
-            });
+            self.Id(data.Id);
+            self.Name(data.Name);
+            self.Description(data.Description);
+            self.Players(data.Players);
         });
     };
 
