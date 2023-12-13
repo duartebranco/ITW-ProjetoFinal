@@ -40,14 +40,19 @@
     </nav>
     <!-- Working Area -->
     <div class="container">
-        <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control form-control-sm" placeholder="Search..."/>
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i class="fa fa-search small"></i></button>
-                    <a href="/NBA/Players" class="btn btn-default btn-sm" title="Limpar o filtro"><i class="fa fa-times"></i></a>
-                </div>
+        <br />
+        <div class="border-bottom row">
+            <h2 class="col-md-8" data-bind="text:displayName"></h2>
+            <div class="col-md-4">
+                <form id="search-form" method="get">
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="query" class="form-control form-control-sm" placeholder="Search..."/>
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i class="fa fa-search small"></i></button>
+                            <a href="players.html" class="btn btn-default btn-sm" title="Limpar o filtro"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- ko if:records().length > 0 -->
