@@ -46,6 +46,14 @@ ko.bindingHandlers.dateOnly = {
 };
 
 
+$('#search-form').on('submit', function(event) {
+    event.preventDefault();
+    var query = $('#query').val();
+    localStorage.setItem('userInput', query);
+    window.location.href = 'playersSearch.html';
+});
+
+
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
