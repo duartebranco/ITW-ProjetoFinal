@@ -191,3 +191,15 @@ function toggleFavoritePlayers(button) {
     heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
 }
 
+document.getElementById('toggleViewButton').addEventListener('click', function() {
+    var cardView = document.getElementsByClassName('card-view')[0];
+    var tableView = document.getElementsByClassName('table-view')[0];
+
+    if (cardView.classList.contains('d-none')) {
+        cardView.classList.remove('d-none');
+        tableView.classList.remove('d-none');
+    } else {
+        cardView.classList.add('d-none');
+        tableView.classList.add('d-none');
+    }
+});
