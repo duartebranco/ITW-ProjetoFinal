@@ -84,7 +84,7 @@
             </div>
         </div>
         <!-- /ko -->
-        <div class="container table-view d-none">
+        <div class="container table-view">
             <table class="table table-striped table-hover table-sm">
                 <thead class="thead-dark">
                     <tr>
@@ -116,7 +116,7 @@
                 </tbody>
             </table>
         </div>
-                <div class="row card-view" data-bind="foreach: records">
+                <div class="row card-view d-none" data-bind="foreach: records">
                     <!-- ko if: $index() % 3 === 0 -->
                     <div class="w-100"></div>
                     <!-- /ko -->
