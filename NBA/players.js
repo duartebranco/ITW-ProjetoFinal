@@ -32,7 +32,7 @@ $(window).on('load', function() {
 });
 
 
-// Custom Knockout.js binding
+// Custom Knockout.js binding for date format
 ko.bindingHandlers.dateOnly = {
     update: function(element, valueAccessor) {
         var value = ko.utils.unwrapObservable(valueAccessor());
@@ -46,18 +46,10 @@ ko.bindingHandlers.dateOnly = {
 };
 
 
-$('#search-form').on('submit', function(event) {
-    event.preventDefault();
-    var query = $('#query').val();
-    localStorage.setItem('userInput', query);
-    window.location.href = 'playersSearch.html';
-});
-
-
 // ViewModel KnockOut
 var vm = function () {
     console.log('ViewModel initiated...');
-    //---Vari�veis locais
+    //---Variáveis locais
     var self = this;
     self.baseUri = ko.observable('http://192.168.160.58/NBA/API/Players');
     self.displayName = 'NBA Players List';
@@ -69,6 +61,11 @@ var vm = function () {
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+    
+    //--- Search box 
+    self.searchQuery = ko.observable('');
+    self.searchResults = ko.observableArray([]);
+
     self.previousPage = ko.computed(function () {
         return self.currentPage() * 1 - 1;
     }, self);
@@ -98,6 +95,51 @@ var vm = function () {
         return list;
     };
 
+    //--- Search box functions
+    self.search = function () {
+        let searchQuery = self.searchQuery();
+        console.log(searchQuery)
+        if (searchQuery) {
+            let apiUrl = `http://192.168.160.58/NBA/api/Players/Search?q=${searchQuery}`;
+            $.ajax({
+                url: apiUrl,
+                dataType: 'json',
+                success: function (data) {
+                    self.searchResults(data);
+                    $('input[name="q"]').autocomplete("close");
+                },
+                error: function (error) {
+                    console.error(error);
+                    $('input[name="q"]').autocomplete("close");
+                }
+            });
+        } else {
+            window.location.href = "players.html";
+        }
+    };
+
+    //--- Autocomplete 
+    $('input[name="q"]').autocomplete({
+        minLength: 3,
+        source: function (request, response) {
+            let apiUrl = `http://192.168.160.58/NBA/api/Players/Search?q=${request.term}`;
+            $.ajax({
+                url: apiUrl,
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                    response(data.map(function (item) {
+                        return item.Name;
+                    }));
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getPlayers...');
@@ -115,6 +157,7 @@ var vm = function () {
             //self.SetFavourites();
         });
     };
+
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {

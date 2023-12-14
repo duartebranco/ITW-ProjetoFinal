@@ -1,10 +1,11 @@
 <!doctype html>
+
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ITW 2023/24 - NBA States Details</title>
+    <title>ITW 2023/24 - NBA Search</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -24,7 +25,7 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="arenas.html"><i class="fa fa-soccer-ball-o text-warning"></i> Arenas</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info"></i> Seasons</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe text-warning"></i> Conferences</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-flag-o text-primary"></i> Divisions</a></li>
@@ -46,44 +47,62 @@
             </div>
         </div>
     </nav>
-    <!-- Work Area-->
+    <!-- Working Area -->
     <div class="container">
-        <div class="py-2 border-bottom mb-3">
-            <h2 data-bind="text:Name() +' [' + Id() + ']'"></h2>
+        <div class="border-bottom py-2 mb-2">
+            <h2 data-bind="text:displayName"></h2>
         </div>
-        <!-- ko if:Name().length > 0 -->
-        <div class="row border-bottom g-2">
-            <div class="col-2">Id</div><div class="col-10" data-bind="text:Id"></div>
-        </div>
-        <div class="row border-bottom g-2">
-            <div class="col-2">Name</div><div class="col-10" data-bind="text:Name"></div>
-        </div>
-        <!-- /ko -->
-        <div class="row border-bottom g-2" data-bind="visible: Flag() != '' && Flag() != null">
-            <div class="col-2">Flag</div><div class="small col-10">
-                <img class="img-thumbnail" data-bind="attr:{src: Flag}"><br />
-                <i class="fa fa-link"></i> [<a class="link-dark text-decoration-none" data-bind="attr: { href: Flag }, text: Flag" target="_blank"></a>]
+        <!-- ko if:records().length > 0 -->
+        <div class="row small">
+            <p class=" col-4 mr-auto pt-2">
+                <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
+                <span data-bind="html: 'Entrances: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
+            </p>
+            <div class="col-8 my-0 pt-3">
+                <ul class="pagination float-end">
+                    <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
+                    <li class="page-item float-end"><a class="page-link" title="First Page" data-bind="attr: { href: './arenas.html?page=' + '1',  rel:'prev'}">⇤</a></li>
+                    <li class="page-item float-end"><a class="page-link" title="Previous Page" data-bind="attr: { href: './arenas.html?page=' + previousPage(),  rel:'prev'}">←</a></li>
+                    <!-- /ko -->
+                    <!-- ko foreach: pageArray()-->
+                    <!-- ko if:$data == $parent.currentPage() -->
+                    <li class="active page-item"><a class="page-link" data-bind="attr: { title:'Current Page ' + $data }, text: $data"></a></li>
+                    <!-- /ko -->
+                    <!-- ko if:$data != $parent.currentPage() -->
+                    <li class="page-item"><a class="page-link" data-bind="attr: { href: './arenas.html?page=' + $data, title:'Goto Page ' + $data }, text:$data"></a></li>
+                    <!-- /ko -->
+                    <!-- /ko -->
+                    <!-- ko if: currentPage() < totalPages() - 4 && totalPages() > 9 -->
+                    <li class="page-item"><a class="page-link" title="Next Page" data-bind="attr: { href: './arenas.html?page=' + nextPage(), rel:'next' }">→</a></li>
+                    <li class="page-item"><a class="page-link" title="Last Page" data-bind="attr: { href: './arenas.html?page=' + totalPages() }">⇥</a></li>
+                    <!-- /ko -->
+                </ul>
             </div>
         </div>
-        <!-- ko if:Teams().length > 0 -->
-        <div class="py-2 border-bottom mb-3">
-            <h4>Lista de Equipas<span data-bind="text: ' [' + Teams().length +']'"></span></h4>
-        </div>
-        <div class="d-flex flex-wrap" data-bind="foreach: Teams()">
-            <a class="btn border rounded-md m-1" data-bind=" attr:{href:'./teamDetails.html?id=' + Id + '&acronym=' + Acronym}"><i class="fa fa-futbol-o"></i> <span data-bind="text:Name"></span></a>
-        </div>
         <!-- /ko -->
-
-        <!-- ko if:Arenas().length > 0 -->
-        <div class="py-2 border-bottom mb-3">
-            <h4>Lista de Arenas<span data-bind="text: ' [' + Arenas().length +']'"></span></h4>
-        </div>
-        <div class="d-flex flex-wrap" data-bind="foreach: Arenas()">
-            <a class="btn border rounded-md m-1" data-bind=" attr:{href:'./arenaDetails.html?id=' + Id}"><i class="fa fa-soccer-ball-o text-warning"></i> <span data-bind="text:Name"></span></a>
-        </div>
-        <!-- /ko -->
-        <br />
-        <a href="./states.html" class="btn btn-outline-primary"><i class="fa fa-list"></i> Back to List</a>
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Table</th>
+                    <th scope="col">Field</th>
+                    <th scope="col">Id</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: records">    
+                <tr>
+                    <td class="align-middle" data-bind="text:Table"></td>
+                    <td class="align-middle" data-bind="text:Field"></td>
+                    <td class="align-middle" data-bind="text:Id"></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./arenaDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteArena(this)">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -100,7 +119,7 @@
             </div>
         </div>
     </div>
-    <!-- End of Work Area -->
+    <!-- End of Working Area -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-bottom">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2023/24</div>
@@ -110,9 +129,10 @@
             </div>
         </div>
     </nav>
+
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
     <script src="../lib/jquery/dist/jquery.min.js"></script>
-    <script src="statesDetails.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>

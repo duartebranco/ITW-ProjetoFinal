@@ -30,3 +30,11 @@ $(window).on('load', function() {
         $('.switch').children('i').removeClass('fa-toggle-off').addClass('fa-toggle-on');
     }
 });
+
+$('.form-inline').on('submit', function(e) {
+    e.preventDefault();
+    var inputValue = $('.custom-search').val();
+    console.log(inputValue);
+    localStorage.setItem('search', inputValue);
+    window.location.href = 'search.html';
+});

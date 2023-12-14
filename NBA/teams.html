@@ -11,6 +11,9 @@
     <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="myCSS.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
@@ -25,11 +28,20 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info "></i> Seasons</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe"></i> Conferences</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-soccer-ball-o "></i> Divisions</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="top.html"><i class="fa fa-trophy"></i> Top 3</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="xxx.html"><i class="fa fa-magic" title="The party continues..."></i> &middot;&middot;&middot;</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info"></i> Seasons</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe text-warning"></i> Conferences</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-flag-o text-primary"></i> Divisions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="positions.html"><i class="fa fa-user-o text-danger"></i> Positions</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="top.html"><i class="fa fa-trophy text-success"></i> Top 3</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="quiz.html"><i class="fa fa-question text-warning"></i> Quiz</a></li>
+                    <li class="nav-item">
+                        <form class="form-inline" method="get">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control custom-search" placeholder="Search..." required>
+                                <button type="submit" class="btn btn-default custom-btn" title="Filtrar"><i class="fa fa-search small"></i></button>
+                            </div>
+                        </form>
+                    </li>
                 </ul>
                 <ul class="navbar-nav justify-content-end" id="bd-theme">
                     <li class="nav-item ml-md-auto"><i class="fa fa-moon-o" aria-hidden="true"></i><a class="btn switch"><i class="fa fa-toggle-on" aria-hidden="true"></i></a><i class="fa fa-sun-o" aria-hidden="true"></i></li>
@@ -38,9 +50,21 @@
         </div>
     </nav>
     <!-- Working Area -->
+    <br />
     <div class="container">
-        <div class="border-bottom py-2 mb-2">
-            <h2 data-bind="text:displayName"></h2>
+        <div class="border-bottom row">
+            <h2 class="col-md-8" data-bind="text:displayName"></h2>
+            <div class="col-md-4">
+                <form data-bind="submit: search">
+                    <div class="input-group input-group-sm">
+                        <input type="text" data-bind="value: searchQuery" class="form-control form-control-sm" name="q" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default btn-sm" title="Filtrar"><i class="fa fa-search small"></i></button>
+                            <a href="teams.html" class="btn btn-default btn-sm" title="Limpar o filtro"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <!-- ko if:records().length > 0 -->
         <div class="row small">
@@ -48,6 +72,7 @@
                 <span data-bind="html: 'Page: ' + currentPage() + ' of ' + totalPages()"></span><br />
                 <span data-bind="html: 'Entrances: '+ fromRecord() + '-' + toRecord() + ' of ' + totalRecords()"></span>
             </p>
+            <!-- ko ifnot: searchResults().length > 0-->
             <div class="col-8 my-0 pt-3">
                 <ul class="pagination float-end">
                     <!-- ko if: currentPage() > 5 && totalPages() > 10 -->
@@ -68,8 +93,10 @@
                     <!-- /ko -->
                 </ul>
             </div>
+            <!-- /ko -->
         </div>
         <!-- /ko -->
+        <!-- ko ifnot: searchResults().length > 0 -->
         <table class="table table-striped table-hover table-sm">
             <thead class="thead-dark">
                 <tr>
@@ -100,6 +127,39 @@
                 </tr>
             </tbody>
         </table>
+        <!-- /ko -->
+        <!-- ko if: searchResults().length > 0 -->
+        <table class="table table-striped table-hover table-sm">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Acronym</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Conference</th>
+                    <th scope="col">Division</th>
+                    <th scope="col">Logo</th>
+                    <th scope="col" class="text-right"></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: searchResults">
+                <tr>
+                    <td class="align-middle" data-bind="text:Acronym"></td>
+                    <td class="align-middle" data-bind="text:Name"></td>
+                    <td class="align-middle" data-bind="text:City"></td>
+                    <td class="align-middle" data-bind="text:StateName"></td>
+                    <td class="align-middle" data-bind="text:ConferenceName"></td>
+                    <td class="align-middle" data-bind="text:DivisionName"></td>
+                    <td><img data-bind="attr:{src: Logo}" style="height:50px; width:50px" alt="Team Logo"></td>
+                    <td class="text-end">
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./teamDetails.html?id=' + Id + '&acronym=' + Acronym }"><i class="fa fa-eye" title="Show details"></i></a>                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
+                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- /ko -->
     </div>
     <!-- Modal -->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -128,7 +188,6 @@
     </nav>
     <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="../lib/jquery/dist/jquery.min.js"></script>
     <script src="teams.js"></script>
 </body>
 </html>

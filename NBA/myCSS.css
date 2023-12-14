@@ -47,3 +47,7 @@ li.page-item a {
     height: 100px;
     border: 1px solid black;
 }
+.custom-search {
+    height: 35px; /* Change as needed */
+}
+
