@@ -47,6 +47,53 @@ var vm = function () {
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
 
+    //---Favourites
+    self.toggleFavourite = function (arena) {
+        console.log("toggleFavourite: ", arena);
+        let favs = self.favourites();
+        let idx = favs.indexOf(arena);
+        if (idx > -1) {
+            favs.splice(idx, 1);
+        } else {
+            favs.push(arena);
+        }
+        self.favourites(favs);
+        localStorage.setItem('fav', JSON.stringify(favs));
+    }
+
+//self.toggleFavourite = function (id) {
+//    if (self.favourites.indexOf(id) == -1) {
+//        self.favourites.push(id);
+//    }
+//    else {
+//        self.favourites.remove(id);
+//    }
+//    localStorage.setItem("fav", JSON.stringify(self.favourites()));
+//};
+
+    self.SetFavourites = function () { 
+        let favs = localStorage.getItem('fav');
+        if (favs) {
+            self.favourites(JSON.parse(favs));
+        }
+    }
+
+//self.SetFavourites = function () {
+//    let storage;
+//    try {
+//        storage = JSON.parse(localStorage.getItem("fav"));
+//    }
+//    catch (e) {
+//        ;
+//    }
+//    if (Array.isArray(storage)) {
+//        self.favourites(storage);
+//    }
+//}
+//
+    self.favourites = ko.observableArray([]);
+
+
     //--- Search box 
     self.searchQuery = ko.observable('');
     self.searchResults = ko.observableArray([]);
@@ -124,6 +171,7 @@ var vm = function () {
         }
     });
 
+    
     //--- Page Events
     self.activate = function (id) {
         console.log('CALL: getArenas...');
@@ -138,9 +186,10 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            //self.SetFavourites();
+            self.SetFavourites();
         });
     };
+    
 
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
@@ -211,9 +260,3 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-function toggleFavoriteArena(button) {
-    var heartIcon = button.querySelector('i');
-    heartIcon.classList.toggle('fa-heart');
-    heartIcon.classList.toggle('fa-heart-o');
-    heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
-}

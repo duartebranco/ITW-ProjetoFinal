@@ -120,8 +120,9 @@
                     <td class="align-middle" data-bind="text:Opened"></td>
                     <td class="text-end">
                         <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./arenaDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
-                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteArena(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>

@@ -48,6 +48,14 @@ li.page-item a {
     border: 1px solid black;
 }
 .custom-search {
-    height: 35px; /* Change as needed */
+    /* make it hidden */
+    display: none;
+    height: 35px;
 }
-
+.custom-btn {
+    /* make it hidden */
+    display: none;
+}
+.fav {
+    margin-right: 20px;
+}
