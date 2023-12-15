@@ -120,10 +120,12 @@
                     <td class="align-middle" data-bind="text:PositionName"></td>
                     <td class="align-middle" data-bind="text:Height"></td>
                     <td class="align-middle" data-bind="text:Weight"></td>
-                    <td><img data-bind="attr:{src: Photo}" style="height:50px; width:50px" alt="Photo"></td>
+                    <td><img data-bind="attr:{src: Photo}" style="height:50px" alt="Photo"></td>
                     <td class="text-end">
-                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id}"><i class="fa fa-eye" title="Show details"></i></a><button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>
@@ -152,10 +154,12 @@
                     <td class="align-middle" data-bind="text:PositionName"></td>
                     <td class="align-middle" data-bind="text:Height"></td>
                     <td class="align-middle" data-bind="text:Weight"></td>
-                    <td><img data-bind="attr:{src: Photo}" style="height:50px; width:50px" alt="Photo"></td>
+                    <td><img data-bind="attr:{src: Photo}" style="height:50px" alt="Photo"></td>
                     <td class="text-end">
-                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id}"><i class="fa fa-eye" title="Show details"></i></a><button class="btn btn-outline-danger btn-xs" onclick="toggleFavoriteTeams(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>
@@ -171,9 +175,10 @@
                     <img class="card-img-top" data-bind="attr: { src: Photo }" alt="Player photo" onerror="this.onerror=null; this.src='nophoto.png'; this.alt='Image not available';">
                     <div class="card-body">
                         <h5 class="card-title" data-bind="text: Name"></h5>
-                        <a class="btn btn-primary" data-bind="attr: { href:'./playersDetails.html?id=' + Id }">Show details</a>
-                        <button class="btn btn-danger" onclick="toggleFavoritePlayers(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./playersDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
+
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </div>
                 </div>

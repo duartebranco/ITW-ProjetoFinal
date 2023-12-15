@@ -61,6 +61,29 @@ var vm = function () {
     self.totalRecords = ko.observable(50);
     self.hasPrevious = ko.observable(false);
     self.hasNext = ko.observable(false);
+
+    //---Favourites
+    self.toggleFavourite = function (arena) {
+        console.log("toggleFavourite: ", arena);
+        let favs = self.favourites();
+        let idx = favs.indexOf(arena);
+        if (idx > -1) {
+            favs.splice(idx, 1);
+        } else {
+            favs.push(arena);
+        }
+        self.favourites(favs);
+        localStorage.setItem('fav', JSON.stringify(favs));
+    }
+    
+    self.SetFavourites = function () { 
+        let favs = localStorage.getItem('fav');
+        if (favs) {
+            self.favourites(JSON.parse(favs));
+        }
+    }
+
+    self.favourites = ko.observableArray([]);
     
     //--- Search box 
     self.searchQuery = ko.observable('');
@@ -154,7 +177,7 @@ var vm = function () {
             self.pagesize(data.PageSize)
             self.totalPages(data.TotalPages);
             self.totalRecords(data.TotalRecords);
-            //self.SetFavourites();
+            self.SetFavourites();
         });
     };
 
@@ -228,19 +251,6 @@ $(document).ready(function () {
 $(document).ajaxComplete(function (event, xhr, options) {
     $("#myModal").modal('hide');
 })
-
-var num = 0;
-
-function toggleFavoritePlayers(button) {
-    var heartIcon = button.querySelector('i');
-    if (heartIcon.classList.toggle('fa-heart')) {
-        num++;
-    }
-    if (heartIcon.classList.toggle('fa-heart-o')) {
-        num--;
-    }
-    heartIcon.style.color = heartIcon.classList.contains('fa-heart') ? 'red' : '';
-}
 
 document.getElementById('toggleViewButton').addEventListener('click', function() {
     var cardView = document.getElementsByClassName('row card-view')[0];
