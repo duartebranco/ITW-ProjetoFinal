@@ -254,7 +254,7 @@ $(document).ajaxComplete(function (event, xhr, options) {
 
 document.getElementById('toggleViewButton').addEventListener('click', function() {
     var cardView = document.getElementsByClassName('row card-view')[0];
-    var tableView = document.getElementsByClassName('table-view')[0];
+    var tableView = document.getElementsByClassName('table table-striped table-hover table-sm')[0];
 
     if (cardView.classList.contains('d-none')) {
         cardView.classList.remove('d-none');

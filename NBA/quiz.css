@@ -97,6 +97,7 @@ button:hover {
     display: none;
     flex-direction: column;
     gap: 20px;
+    color: #007bff;
 }
 
 .finish button {

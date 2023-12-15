@@ -28,7 +28,15 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="players.html"><i class="fa fa-user-o text-primary"></i> Players</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="teams.html"><i class="fa fa-flag-o text-danger"></i> Teams</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="states.html"><i class="fa fa-map-marker text-success"></i> States</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info"></i> Seasons</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-bookmark-o text-info"></i>
+                            Seasons
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="seasons.html"><i class="fa fa-bookmark-o text-info"></i> Dates</a></li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="seasonsTypes.html"><i class="fa fa-bookmark text-info"></i> Seasons Types</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="conferences.html"><i class="fa fa-globe text-warning"></i> Conferences</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="divisions.html"><i class="fa fa-flag-o text-primary"></i> Divisions</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="positions.html"><i class="fa fa-user-o text-danger"></i> Positions</a></li>
@@ -44,6 +52,13 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav justify-content-end" id="bd-theme">
+                    <li class="nav-item dropdown fav">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-heart text-danger"></i></a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="arenasfav.html">Arenas</a></li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="playersfav.html">Players</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item ml-md-auto"><i class="fa fa-moon-o" aria-hidden="true"></i><a class="btn switch"><i class="fa fa-toggle-on" aria-hidden="true"></i></a><i class="fa fa-sun-o" aria-hidden="true"></i></li>
                 </ul>
             </div>
