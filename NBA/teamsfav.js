@@ -128,13 +128,13 @@ $(document).ajaxComplete(function (event, xhr, options) {
 })
 
 
-function removeFav(Id) {
+function removeFav(arena) {
     console.log("remove fav")
-    $("#fav-" + Id).remove();
+    $("#fav-" + arena.Id).remove();
 
     let fav = JSON.parse(localStorage.fav || '[]');
 
-    const index = fav.indexOf(Id);
+    const index = fav.findIndex(favArena => favArena.Id === arena.Id && favArena.Acronym === arena.Acronym);
 
     if (index != -1)
         fav.splice(index, 1);
@@ -151,32 +151,33 @@ $(document).ready(function () {
     console.log(fav);
 
 
-    for (const Id of fav) {
-        console.log(Id);
+    for (const arena of fav) {
+        console.log(arena);
 
-        ajaxHelper('http://192.168.160.58/NBA/api/Teams/' + Id + '?acronym=' + Acronym, 'GET').done(function (data) {
+        ajaxHelper('http://192.168.160.58/NBA/api/Teams/' + arena.Id + '?acronym=' + arena.Acronym, 'GET').done(function (data) {
             console.log(data)
             if (localStorage.fav.length != 0) {
                 $("#table-favourites").show();
                 $('#noadd').hide();
                 $('#nofav').hide();
                 $("#table-favourites").append(
-                    `<tr id="fav-${Id}">
+                    `<tr id="fav-${arena.Id}">
                         <td class="align-middle">${data.Acronym}</td>
                         <td class="align-middle">${data.Name}</td>
                         <td class="align-middle">${data.City}</td>
                         <td class="align-middle">${data.StateName}</td>
                         <td class="align-middle">${data.ConferenceName}</td>
                         <td class="align-middle">${data.DivisionName}</td>
-                        <td class="align-middle"><img style="height: 50px; width:50px" src="${data.Photo}"></td>
+                        <td class="align-middle"><img style="height: 50px; width:50px" src="${data.Logo}"></td>
                         <td class="text-end">
-                            <a class="btn btn-outline-primary btn-xs" href="teamDetails.html?id=${Id}"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
-                            <a class="btn btn-outline-danger btn-xs btn-favourite" onclick="removeFav(${Id})"><i class="fa fa-heart text-danger" title="Selecione para remover dos favoritos"></i></a>
+                            <a class="btn btn-outline-primary btn-xs" href="teamDetails.html?id=${arena.Id}"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
+                            <a class="btn btn-outline-danger btn-xs btn-favourite" onclick="removeFav({Id: ${arena.Id}, Acronym: '${arena.Acronym}'})"><i class="fa fa-heart text-danger" title="Selecione para remover dos favoritos"></i></a>
                         </td>
                     </tr>`
                 )
 
             }
         });
+        sleep(150);
     }
 })

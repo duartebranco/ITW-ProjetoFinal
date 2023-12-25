@@ -154,7 +154,7 @@ $(document).ready(function () {
     for (const Id of fav) {
         console.log(Id);
 
-        ajaxHelper('http://192.168.160.58/NBA/api/Arenas/' + Id, 'GET').done(function (data) {
+        ajaxHelper('http://192.168.160.58/NBA/api/States/' + Id, 'GET').done(function (data) {
             console.log(data)
             if (localStorage.fav.length != 0) {
                 $("#table-favourites").show();
@@ -162,15 +162,12 @@ $(document).ready(function () {
                 $('#nofav').hide();
                 $("#table-favourites").append(
                     `<tr id="fav-${Id}">
+                        <td class="align-middle">${data.Id}</td>
                         <td class="align-middle">${data.Name}</td>
-                        <td class="align-middle">${data.StateName}</td>
-                        <td class="align-middle">${data.TeamName}</td>
-                        <td class="align-middle">${data.Location}</td>
-                        <td class="align-middle">${data.Capacity}</td>
-                        <td class="align-middle">${data.Opened}</td>
+                        <td class="align-middle"><img style="height: 50px;" src="${data.Flag}"></td>
                         <td class="text-end">
-                            <a class="btn btn-outline-primary btn-xs" href="arenaDetails.html?id=${Id}"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
-                            <a class="btn btn-outline-danger btn-xs btn-favourite" onclick="removeFav(${Id})"><i class="fa fa-heart text-danger" title="Selecione para remover dos favoritos"></i></a>
+                            <a class="btn btn-outline-primary btn-xs" href="statesDetails.html?id=${Id}"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
+                            <a class="btn btn-outline-danger btn-xs btn-favourite" onclick="removeFav('${Id}')"><i class="fa fa-heart text-danger" title="Selecione para remover dos favoritos"></i></a>
                         </td>
                     </tr>`
                 )

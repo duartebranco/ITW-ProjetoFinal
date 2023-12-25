@@ -58,6 +58,8 @@
                         <ul class="dropdown-menu">
                             <li class="nav-item"><a class="nav-link" aria-current="page" href="arenasfav.html">Arenas</a></li>
                             <li class="nav-item"><a class="nav-link" aria-current="page" href="playersfav.html">Players</a></li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="teamsfav.html">Teams</a></li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="statesfav.html">States</a></li>
                         </ul>
                     </li>
                     <li class="nav-item ml-md-auto"><i class="fa fa-moon-o" aria-hidden="true"></i><a class="btn switch"><i class="fa fa-toggle-on" aria-hidden="true"></i></a><i class="fa fa-sun-o" aria-hidden="true"></i></li>
@@ -129,8 +131,8 @@
                     <td class="align-middle"><img data-bind="attr: { src: Flag }" height="50" /></td>
                     <td class="text-end">
                         <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./statesDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
-                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoritePlayers(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>
@@ -154,8 +156,8 @@
                     <td class="align-middle"><img data-bind="attr: { src: Flag }" height="50" /></td>
                     <td class="text-end">
                         <a class="btn btn-outline-primary btn-xs" data-bind="attr: { href:'./statesDetails.html?id=' + Id }"><i class="fa fa-eye" title="Show details"></i></a>
-                        <button class="btn btn-outline-danger btn-xs" onclick="toggleFavoritePlayers(this)">
-                            <i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + Id }" title="Add to favorites"></i>
+                        <button class="btn btn-outline-danger btn-xs btn-favourite" data-bind="click: () => $parent.toggleFavourite(Id), attr : { 'id': 'favourite_' + Id }">
+                            <i data-bind="attr: {'class': $parent.favourites().includes(Id)? 'fa fa-heart text-danger' : 'fa fa-heart-o'}" class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i>
                         </button>
                     </td>
                 </tr>
