@@ -71,6 +71,16 @@ var vm = function () {
     self.Seasons = ko.observableArray([]);
     self.Teams = ko.observableArray([]);
 
+    //--- Stats Record
+    self.PlayerId = ko.observable('');
+    self.Season = ko.observable('');
+    self.TeamId = ko.observable('');
+    self.Acronym = ko.observable('');
+    self.Regular = ko.observableArray([]);
+    self.Regular2 = ko.observable('');
+    self.Playoff = ko.observableArray([]);
+    self.Playoff2 = ko.observable('');
+
 
     //--- Page Events
     self.activate = function (id) {
@@ -93,6 +103,35 @@ var vm = function () {
             self.Photo(data.Photo);
             self.Seasons(data.Seasons);
             self.Teams(data.Teams);
+
+            $('body').on('click', '#statm', function() {
+                // Get player's Id and season
+                var playerId = self.Id();
+                var season = $(this).find('span').text().slice(0, -3);
+    
+                // Construct API URL
+                var apiUrl = `http://192.168.160.58/NBA/API/Players/Statistics?id=${playerId}&seasonId=${season}`;
+    
+                // Make HTTP request
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle API response
+                        console.log(data);
+                        self.PlayerId(data.PlayerId);
+                        self.Season(data.Season);
+                        self.TeamId(data.TeamId);
+                        self.Acronym(data.Acronym);
+                        self.Regular(data.Regular);
+                        self.Regular2(data.Regular.Rank);
+                        self.Playoff(data.Playoff);
+                        self.Playoff2(data.Playoff.Rank);
+                    })
+                    .catch(error => {
+                        // Handle error
+                        console.error('Error:', error);
+                    });
+            });
         });
     };
 
