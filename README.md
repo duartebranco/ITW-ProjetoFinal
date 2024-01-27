@@ -6,7 +6,7 @@ Aplicação web que fornece informação detalhada sobre a [National Basketball 
 
 Este site foi feito com [Boostrap](https://github.com/twbs/bootstrap), [Knockout](https://github.com/knockout/knockout) e [jQuery](https://github.com/jquery/jquery)
 
-## Dependecies
+## Dependencies
 
 Este site utiliza esta [API](https://192.168.160.58/NBA/Help) para obter informação.
 
