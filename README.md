@@ -14,6 +14,10 @@ Este site utiliza esta [API](https://192.168.160.58/NBA/Help) para obter informa
 
 É necessario estar ligado à **rede da Universidade de Aveiro** (presencialmente or por [VPN](https://www.ua.pt/pt/stic/teletrabalho_vpn)) para o site funcionar corretamente.
 
+## TODO
+
+- Dar Host com o Github pages
+
 ## Authors
 
 [Duarte Branco](https://github.com/duartebranco)
