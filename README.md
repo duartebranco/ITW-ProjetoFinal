@@ -16,7 +16,7 @@ Este site utiliza esta [API](https://192.168.160.58/NBA/Help) para obter informa
 
 ## TODO
 
-- Dar Host com o Github pages
+- ~~Dar Host com o Github pages~~(é necessário remover a proteção do browser para permitir o carregamento de conteúdo misto - [API](https://192.168.160.58/NBA/Help))
 
 ## Authors
 
