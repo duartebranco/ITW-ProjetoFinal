@@ -14,9 +14,11 @@ Este site utiliza esta [API](https://192.168.160.58/NBA/Help) para obter informa
 
 É necessario estar ligado à **rede da Universidade de Aveiro** (presencialmente or por [VPN](https://www.ua.pt/pt/stic/teletrabalho_vpn)) para o site funcionar corretamente.
 
+(*)É necessário  também **remover a proteção do browser** para permitir o carregamento de conteúdo misto - [API](https://192.168.160.58/NBA/Help)
+
 ## TODO
 
-- ~~Dar Host com o Github pages~~(é necessário remover a proteção do browser para permitir o carregamento de conteúdo misto - [API](https://192.168.160.58/NBA/Help))
+- ~~Dar Host com o Github pages~~(*)
 
 ## Authors
 
