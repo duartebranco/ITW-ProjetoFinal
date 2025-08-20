@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
     <link href="../lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../lib/font-awesome/dist/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="myCSS.css" />
+    <link rel="stylesheet" href="/docs/myCSS.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html" tabindex="NBA"><img src="NBA_logo.png" height="24" /></a>
+            <a class="navbar-brand" href="/index.html" tabindex="NBA"><img src="/docs/NBA_logo.png" height="24" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -127,7 +127,7 @@
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: records">    
+            <tbody data-bind="foreach: records">
                 <tr>
                     <td class="align-middle" data-bind="text:Name"></td>
                     <td class="align-middle"><a class="nav-link" data-bind="text:StateName, attr: { href:'./stateDetails.html?id=' + StateId }" title="Show State Details"></a></td>
@@ -159,7 +159,7 @@
                     <th scope="col" class="text-right"></th>
                 </tr>
             </thead>
-            <tbody data-bind="foreach: searchResults">    
+            <tbody data-bind="foreach: searchResults">
                 <tr>
                     <td class="align-middle" data-bind="text:Name"></td>
                     <td class="align-middle"><a class="nav-link" data-bind="text:StateName, attr: { href:'./stateDetails.html?id=' + StateId }" title="Show State Details"></a></td>
@@ -184,7 +184,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
-                        <img src="NBA_logo.png" height="30" /> Loading data...
+                        <img src="/docs/NBA_logo.png" height="30" /> Loading data...
                     </h5>
                 </div>
                 <div class="modal-body text-center">
@@ -204,8 +204,8 @@
         </div>
     </nav>
 
-    <script src="../lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/knockout/dist/knockout-latest.min.js"></script>
-    <script src="arenas.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/lib/knockout/dist/knockout-latest.min.js"></script>
+    <script src="/docs/arenas.js"></script>
 </body>
 </html>
